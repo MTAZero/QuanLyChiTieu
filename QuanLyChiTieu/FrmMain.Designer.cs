@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupThongTin = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -42,7 +42,6 @@
             this.txtNoiDung = new System.Windows.Forms.TextBox();
             this.cbxLoaiChiTieu = new System.Windows.Forms.ComboBox();
             this.btnThem = new System.Windows.Forms.Button();
-            this.btnXoaTrang = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTongChiPhi = new System.Windows.Forms.Label();
             this.dgvChiTieu = new System.Windows.Forms.DataGridView();
@@ -50,9 +49,11 @@
             this.LoaiChiTieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NoiDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupThongTin.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -63,8 +64,11 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnXoa);
+            this.panel1.Controls.Add(this.btnSua);
+            this.panel1.Controls.Add(this.btnThem);
             this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupThongTin);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,24 +90,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách các chi tiêu";
             // 
-            // groupBox2
+            // groupThongTin
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.panel2);
-            this.groupBox2.Location = new System.Drawing.Point(744, 25);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(403, 248);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chi tiết chi tiêu";
+            this.groupThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupThongTin.Controls.Add(this.panel2);
+            this.groupThongTin.Location = new System.Drawing.Point(744, 25);
+            this.groupThongTin.Name = "groupThongTin";
+            this.groupThongTin.Size = new System.Drawing.Size(403, 201);
+            this.groupThongTin.TabIndex = 1;
+            this.groupThongTin.TabStop = false;
+            this.groupThongTin.Text = "Chi tiết chi tiêu";
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.btnXoaTrang);
             this.panel2.Controls.Add(this.cbxLoaiChiTieu);
             this.panel2.Controls.Add(this.txtNoiDung);
-            this.panel2.Controls.Add(this.btnThem);
             this.panel2.Controls.Add(this.txtSoTien);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
@@ -111,16 +113,16 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 20);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(397, 225);
+            this.panel2.Size = new System.Drawing.Size(397, 178);
             this.panel2.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.panel3);
-            this.groupBox3.Location = new System.Drawing.Point(744, 294);
+            this.groupBox3.Location = new System.Drawing.Point(744, 277);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(403, 314);
+            this.groupBox3.Size = new System.Drawing.Size(403, 331);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin thống kê";
@@ -133,7 +135,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 20);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(397, 291);
+            this.panel3.Size = new System.Drawing.Size(397, 308);
             this.panel3.TabIndex = 0;
             // 
             // label1
@@ -202,25 +204,13 @@
             this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnThem.ForeColor = System.Drawing.Color.Black;
-            this.btnThem.Location = new System.Drawing.Point(251, 173);
+            this.btnThem.Location = new System.Drawing.Point(747, 232);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(120, 39);
+            this.btnThem.Size = new System.Drawing.Size(127, 39);
             this.btnThem.TabIndex = 12;
-            this.btnThem.Text = "Thêm chi tiêu";
+            this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
-            // 
-            // btnXoaTrang
-            // 
-            this.btnXoaTrang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnXoaTrang.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnXoaTrang.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnXoaTrang.ForeColor = System.Drawing.Color.Black;
-            this.btnXoaTrang.Location = new System.Drawing.Point(125, 173);
-            this.btnXoaTrang.Name = "btnXoaTrang";
-            this.btnXoaTrang.Size = new System.Drawing.Size(120, 39);
-            this.btnXoaTrang.TabIndex = 13;
-            this.btnXoaTrang.Text = "Xóa trắng";
-            this.btnXoaTrang.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // label4
             // 
@@ -261,13 +251,14 @@
             this.dgvChiTieu.ReadOnly = true;
             this.dgvChiTieu.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvChiTieu.RowHeadersWidth = 25;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvChiTieu.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvChiTieu.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvChiTieu.RowTemplate.Height = 30;
             this.dgvChiTieu.RowTemplate.ReadOnly = true;
             this.dgvChiTieu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvChiTieu.Size = new System.Drawing.Size(715, 560);
             this.dgvChiTieu.TabIndex = 5;
+            this.dgvChiTieu.SelectionChanged += new System.EventHandler(this.dgvChiTieu_SelectionChanged);
             // 
             // STT
             // 
@@ -296,10 +287,38 @@
             // NoiDung
             // 
             this.NoiDung.DataPropertyName = "NoiDung";
-            this.NoiDung.FillWeight = 25F;
+            this.NoiDung.FillWeight = 20F;
             this.NoiDung.HeaderText = "Nội dung";
             this.NoiDung.Name = "NoiDung";
             this.NoiDung.ReadOnly = true;
+            // 
+            // btnSua
+            // 
+            this.btnSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSua.ForeColor = System.Drawing.Color.Black;
+            this.btnSua.Location = new System.Drawing.Point(880, 232);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(127, 39);
+            this.btnSua.TabIndex = 13;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = false;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnXoa.ForeColor = System.Drawing.Color.Black;
+            this.btnXoa.Location = new System.Drawing.Point(1013, 232);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(131, 39);
+            this.btnXoa.TabIndex = 14;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // FrmMain
             // 
@@ -311,10 +330,11 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý chi tiêu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.groupThongTin.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -329,7 +349,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupThongTin;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Panel panel3;
@@ -340,7 +360,6 @@
         private System.Windows.Forms.TextBox txtSoTien;
         private System.Windows.Forms.ComboBox cbxLoaiChiTieu;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button btnXoaTrang;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label txtTongChiPhi;
         private System.Windows.Forms.DataGridView dgvChiTieu;
@@ -348,6 +367,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiChiTieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoTien;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoiDung;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnSua;
     }
 }
 

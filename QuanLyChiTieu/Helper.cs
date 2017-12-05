@@ -13,11 +13,22 @@ namespace QuanLyChiTieu
 
         public static void LoadDanhSach(string FileName)
         {
+            ChiTieus = new List<ChiTieu>();
             try
             {   // Open the text file using a stream reader.
                 using (StreamReader sr = new StreamReader(FileName))
                 {
-                    sr.ReadLine();
+                    int n;
+                    n = Int32.Parse(sr.ReadLine());
+
+                    for(int i=0; i<n; i++)
+                    {
+                        ChiTieu item = new ChiTieu();
+                        item.LoaiChiTieu = Int32.Parse(sr.ReadLine());
+                        item.SoTien = Int32.Parse(sr.ReadLine());
+                        item.NoiDung = sr.ReadLine();
+                        ChiTieus.Add(item);
+                    }
                 }
             }
             catch
@@ -31,9 +42,15 @@ namespace QuanLyChiTieu
             {
                 using (StreamWriter sr = new StreamWriter(FileName))
                 {
-                    int n = 0;
+                    int n = ChiTieus.Count;
+                    sr.WriteLine(n);
 
-                    sr.WriteLine(n.ToString());
+                    for(int i=0; i<ChiTieus.Count; i++)
+                    {
+                        sr.WriteLine(ChiTieus[i].LoaiChiTieu);
+                        sr.WriteLine(ChiTieus[i].SoTien);
+                        sr.WriteLine(ChiTieus[i].NoiDung);
+                    }
                 }
             }
             catch 
