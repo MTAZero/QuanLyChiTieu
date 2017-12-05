@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace QuanLyChiTieu
 {
@@ -24,6 +25,29 @@ namespace QuanLyChiTieu
 
         #region LoadForm
 
+        private void LoadChart()
+        {
+            try
+            {
+                chartChiTieu.DataSource = Helper.LoaiCongViecs
+                                          .Select(p => new
+                                          {
+                                              Name = p.Name,
+                                              Value = Helper.ChiTieus.Where(z => z.LoaiChiTieu == (int) p.ID).Sum(z => z.SoTien)
+                                          })
+                                          .Where(p=>p.Value>0)
+                                          .ToList();
+                chartChiTieu.Series[0].XValueMember = "Name";
+                chartChiTieu.Series[0].XValueType = ChartValueType.String;
+                chartChiTieu.Series[0].YValueMembers = "Value";
+                chartChiTieu.Series[0].YValueType = ChartValueType.Int32;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void LoadDgvChiTieu()
         {
             int i = 0;
@@ -37,6 +61,9 @@ namespace QuanLyChiTieu
                                     })
                                     .ToList();
             dgvChiTieu.DataSource = listChiTieu;
+
+            /// Load Do Thi
+            LoadChart();
 
             // LoadIndex
             try
